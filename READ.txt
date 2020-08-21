@@ -1,0 +1,2 @@
+启动钉钉报警插件 
+nohup ./prometheus-webhook-dingtalk --ding.profile="ops_dingding=https://oapi.dingtalk.com/robot/send?access_token=46ba9b5b12db1dd916f"   2>&1 1>dingding.log & 
