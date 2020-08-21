@@ -39,8 +39,8 @@ scrape_configs:
     scrape_interval: 30s
     metrics_path: "/_prometheus/metrics"
     basic_auth:
-      username: ligang 
-      password: ewt360.com
+      username: 
+      password: 
     static_configs:
     - targets:
       - 172.16.188.136:9200
