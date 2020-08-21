@@ -1,0 +1,418 @@
+usage: alertmanager [<flags>]
+
+Flags:
+  -h, --help                     Show context-sensitive help (also try
+                                 --help-long and --help-man).
+      --config.file="alertmanager.yml"  
+                                 Alertmanager configuration file name.
+      --storage.path="data/"     Base path for data storage.
+      --data.retention=120h      How long to keep data for.
+      --alerts.gc-interval=30m   Interval between alert GC.
+      --web.external-url=WEB.EXTERNAL-URL  
+                                 The URL under which Alertmanager is externally
+                                 reachable (for example, if Alertmanager is
+                                 served via a reverse proxy). Used for
+                                 generating relative and absolute links back to
+                                 Alertmanager itself. If the URL has a path
+                                 portion, it will be used to prefix all HTTP
+                                 endpoints served by Alertmanager. If omitted,
+                                 relevant URL components will be derived
+                                 automatically.
+      --web.route-prefix=WEB.ROUTE-PREFIX  
+                                 Prefix for the internal routes of web
+                                 endpoints. Defaults to path of
+                                 --web.external-url.
+      --web.listen-address=":9093"  
+                                 Address to listen on for the web interface and
+                                 API.
+      --web.get-concurrency=0    Maximum number of GET requests processed
+                                 concurrently. If negative or zero, the limit is
+                                 GOMAXPROC or 8, whichever is larger.
+      --web.timeout=0            Timeout for HTTP requests. If negative or zero,
+                                 no timeout is set.
+      --cluster.listen-address="0.0.0.0:9094"  
+                                 Listen address for cluster.
+      --cluster.advertise-address=CLUSTER.ADVERTISE-ADDRESS  
+                                 Explicit address to advertise in cluster.
+      --cluster.peer=CLUSTER.PEER ...  
+                                 Initial peers (may be repeated).
+      --cluster.peer-timeout=15s  
+                                 Time to wait between peers to send
+                                 notifications.
+      --cluster.gossip-interval=200ms  
+                                 Interval between sending gossip messages. By
+                                 lowering this value (more frequent) gossip
+                                 messages are propagated across the cluster more
+                                 quickly at the expense of increased bandwidth.
+      --cluster.pushpull-interval=1m0s  
+                                 Interval for gossip state syncs. Setting this
+                                 interval lower (more frequent) will increase
+                                 convergence speeds across larger clusters at
+                                 the expense of increased bandwidth usage.
+      --cluster.tcp-timeout=10s  Timeout for establishing a stream connection
+                                 with a remote node for a full state sync, and
+                                 for stream read and write operations.
+      --cluster.probe-timeout=500ms  
+                                 Timeout to wait for an ack from a probed node
+                                 before assuming it is unhealthy. This should be
+                                 set to 99-percentile of RTT (round-trip time)
+                                 on your network.
+      --cluster.probe-interval=1s  
+                                 Interval between random node probes. Setting
+                                 this lower (more frequent) will cause the
+                                 cluster to detect failed nodes more quickly at
+                                 the expense of increased bandwidth usage.
+      --cluster.settle-timeout=1m0s  
+                                 Maximum time to wait for cluster connections to
+                                 settle before evaluating notifications.
+      --cluster.reconnect-interval=10s  
+                                 Interval between attempting to reconnect to
+                                 lost peers.
+      --cluster.reconnect-timeout=6h0m0s  
+                                 Length of time to attempt to reconnect to a
+                                 lost peer.
+      --log.level=info           Only log messages with the given severity or
+                                 above. One of: [debug, info, warn, error]
+      --log.format=logfmt        Output format of log messages. One of: [logfmt,
+                                 json]
+      --version                  Show application version.
+
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2019-08-05T02:25:21.977Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2019-08-05T02:25:21.977Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2019-08-05T02:25:21.979Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2019-08-05T02:25:21.980Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2019-08-05T02:25:22.009Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2019-08-05T02:25:22.010Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2019-08-05T02:25:22.013Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000100387s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2019-08-05T02:25:23.980Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000762045s","level":"info","msg":"gossip settled; proceeding","ts":"2019-08-05T02:25:31.981Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2019-08-05T02:27:55.502Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2019-08-05T02:27:55.502Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2019-08-05T02:27:55.503Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2019-08-05T02:27:55.504Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2019-08-05T02:27:55.539Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2019-08-05T02:27:55.540Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2019-08-05T02:27:55.543Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000105872s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2019-08-05T02:27:57.504Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000753357s","level":"info","msg":"gossip settled; proceeding","ts":"2019-08-05T02:28:05.504Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2019-08-06T01:46:54.455Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2019-08-06T01:46:54.455Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2019-08-06T01:46:54.456Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2019-08-06T01:46:54.458Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2019-08-06T01:46:54.495Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2019-08-06T01:46:54.496Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2019-08-06T01:46:54.499Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000127551s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2019-08-06T01:46:56.458Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000806705s","level":"info","msg":"gossip settled; proceeding","ts":"2019-08-06T01:47:04.459Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2019-08-17T07:01:37.495Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2019-08-17T07:01:37.495Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2019-08-17T07:01:37.498Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2019-08-17T07:01:37.500Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2019-08-17T07:01:37.535Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2019-08-17T07:01:37.536Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2019-08-17T07:01:37.539Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000115017s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2019-08-17T07:01:39.500Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000782435s","level":"info","msg":"gossip settled; proceeding","ts":"2019-08-17T07:01:47.501Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2019-08-17T07:02:40.444Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2019-08-17T07:02:40.444Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2019-08-17T07:02:40.446Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2019-08-17T07:02:40.447Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2019-08-17T07:02:40.478Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2019-08-17T07:02:40.479Z"}
+{"address":"172.16.189.51:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2019-08-17T07:02:40.481Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000121118s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2019-08-17T07:02:42.447Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000804462s","level":"info","msg":"gossip settled; proceeding","ts":"2019-08-17T07:02:50.448Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2019-08-17T07:03:38.725Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2019-08-17T07:03:38.725Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2019-08-17T07:03:38.727Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2019-08-17T07:03:38.728Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2019-08-17T07:03:38.757Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2019-08-17T07:03:38.758Z"}
+{"address":"0.0.0.0:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2019-08-17T07:03:38.762Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000116315s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2019-08-17T07:03:40.729Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000841703s","level":"info","msg":"gossip settled; proceeding","ts":"2019-08-17T07:03:48.729Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2019-08-19T01:10:30.125Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2019-08-19T01:10:30.126Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2019-08-19T01:10:30.229Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2019-08-19T01:10:30.232Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2019-08-19T01:10:30.262Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2019-08-19T01:10:30.262Z"}
+{"address":"0.0.0.0:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2019-08-19T01:10:30.266Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000124976s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2019-08-19T01:10:32.233Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000869106s","level":"info","msg":"gossip settled; proceeding","ts":"2019-08-19T01:10:40.233Z"}
+{"caller":"main.go:468","level":"info","msg":"Received SIGTERM, exiting gracefully...","ts":"2020-01-10T12:53:48.101Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-01-10T12:53:48.113Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-01-10T12:53:48.177Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-01-10T12:59:31.772Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-01-10T12:59:31.772Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-01-10T12:59:31.774Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-01-10T12:59:31.776Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-01-10T12:59:31.810Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-01-10T12:59:31.811Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-01-10T12:59:31.814Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000107331s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-01-10T12:59:33.777Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.001052317s","level":"info","msg":"gossip settled; proceeding","ts":"2020-01-10T12:59:41.778Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-01-11T06:07:20.623Z"}
+{"caller":"main.go:468","level":"info","msg":"Received SIGTERM, exiting gracefully...","ts":"2020-01-11T06:07:20.623Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-01-11T06:07:20.648Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-01-11T06:09:08.503Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-01-11T06:09:08.504Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-01-11T06:09:08.505Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-01-11T06:09:08.508Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-01-11T06:09:08.540Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-01-11T06:09:08.540Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-01-11T06:09:08.555Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000116203s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-01-11T06:09:10.508Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000790112s","level":"info","msg":"gossip settled; proceeding","ts":"2020-01-11T06:09:18.509Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-01-11T10:57:22.668Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-01-11T10:57:22.681Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-01-11T10:57:22.690Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-01-11T10:57:22.743Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-01-11T10:57:22.808Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-01-11T10:57:22.809Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-01-11T10:57:22.817Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.006061321s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-01-11T10:57:24.749Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.010402543s","level":"info","msg":"gossip settled; proceeding","ts":"2020-01-11T10:57:32.754Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-01-26T12:33:07.957Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-01-26T12:33:07.978Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-01-26T12:33:07.980Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-01-26T12:33:07.983Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-01-26T12:33:08.015Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-01-26T12:33:08.016Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-01-26T12:33:08.034Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000119s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-01-26T12:33:09.983Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000803678s","level":"info","msg":"gossip settled; proceeding","ts":"2020-01-26T12:33:17.984Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-03-17T09:34:02.364Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-03-17T09:34:02.364Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-03-17T09:34:02.365Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-03-17T09:34:02.366Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-03-17T09:34:02.396Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-03-17T09:34:02.397Z"}
+{"address":"0.0.0.0:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-03-17T09:34:02.400Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000093027s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-03-17T09:34:04.366Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.000830862s","level":"info","msg":"gossip settled; proceeding","ts":"2020-03-17T09:34:12.367Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-03-18T02:47:24.613Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-03-18T02:47:24.613Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-03-18T02:47:24.614Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-03-18T02:47:24.664Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-03-18T02:47:24.712Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-03-18T02:47:24.720Z"}
+{"address":"0.0.0.0:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-03-18T02:47:24.725Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.00016834s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-03-18T02:47:26.665Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.001131959s","level":"info","msg":"gossip settled; proceeding","ts":"2020-03-18T02:47:34.666Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-05-11T08:36:21.981Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-05-11T08:36:21.981Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-05-11T08:36:21.983Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-05-11T08:36:21.987Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-05-11T08:36:22.036Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-05-11T08:36:22.037Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-05-11T08:36:22.042Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000187603s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-05-11T08:36:23.987Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.001180188s","level":"info","msg":"gossip settled; proceeding","ts":"2020-05-11T08:36:31.988Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-08-12T05:28:01.489Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-08-12T05:28:01.492Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-08-12T05:28:01.539Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-08-12T05:28:01.541Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-08-12T05:28:01.578Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-08-12T05:28:01.583Z"}
+{"address":"0.0.0.0:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-08-12T05:28:01.586Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000213218s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-08-12T05:28:03.542Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.001177164s","level":"info","msg":"gossip settled; proceeding","ts":"2020-08-12T05:28:11.542Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-08-12T05:29:51.673Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-08-12T05:29:51.673Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-08-12T05:29:51.676Z"}
+{"caller":"main.go:222","err":"create memberlist: Could not set up network transport: failed to obtain an address: Failed to start TCP listener on \"0.0.0.0\" port 9094: listen tcp 0.0.0.0:9094: bind: address already in use","level":"error","msg":"unable to initialize gossip mesh","ts":"2020-08-12T05:29:51.677Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-08-12T05:31:07.950Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-08-12T05:31:07.950Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-08-12T05:31:07.976Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-08-12T05:31:08.038Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-08-12T05:31:08.129Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-08-12T05:31:08.130Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-08-12T05:31:08.141Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000189592s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-08-12T05:31:10.039Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.001500389s","level":"info","msg":"gossip settled; proceeding","ts":"2020-08-12T05:31:18.040Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-08-19T09:47:23.597Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-08-19T09:47:23.602Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-08-19T09:47:23.661Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-08-19T09:47:23.669Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-08-19T09:47:23.722Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-08-19T09:47:23.728Z"}
+{"address":"127.0.0.1:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-08-19T09:47:23.732Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000151298s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-08-19T09:47:25.669Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.00118339s","level":"info","msg":"gossip settled; proceeding","ts":"2020-08-19T09:47:33.670Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-08-19T09:55:06.676Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-08-19T09:55:06.676Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-08-19T09:55:06.680Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-08-19T09:55:06.681Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-08-19T09:55:06.717Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-08-19T09:55:06.717Z"}
+{"address":"0.0.0.0:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-08-19T09:55:06.721Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000925346s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-08-19T09:55:08.682Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.001927461s","level":"info","msg":"gossip settled; proceeding","ts":"2020-08-19T09:55:16.683Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:00:35.343Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T10:00:35.343Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:01:05.345Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T10:01:05.345Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:05:35.351Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":4,"ts":"2020-08-19T10:05:35.351Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:06:05.345Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T10:06:05.345Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:10:35.351Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":4,"ts":"2020-08-19T10:10:35.352Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:11:05.345Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T10:11:05.346Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:15:35.352Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":4,"ts":"2020-08-19T10:15:35.352Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:20:35.352Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":4,"ts":"2020-08-19T10:20:35.353Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T10:25:35.353Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":4,"ts":"2020-08-19T10:25:35.353Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T13:50:35.375Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T13:50:35.376Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T13:55:35.378Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T13:55:35.378Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T14:48:50.477Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T14:48:50.478Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T14:53:50.478Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T14:53:50.478Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T18:21:50.456Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T18:21:50.512Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T18:26:50.546Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T18:26:50.546Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T18:31:50.546Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T18:31:50.547Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T18:36:50.547Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T18:36:50.547Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T18:41:50.548Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T18:41:50.548Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T18:46:50.548Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T18:46:50.549Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T18:51:50.549Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T18:51:50.549Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T18:56:50.550Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T18:56:50.550Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:01:50.550Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:01:50.550Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:06:50.551Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:06:50.552Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:11:50.552Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:11:50.552Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:16:50.553Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:16:50.553Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:21:50.553Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:21:50.554Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:26:50.554Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:26:50.555Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:31:50.555Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:31:50.555Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:36:50.555Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:36:50.556Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:41:50.556Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:41:50.556Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:46:50.557Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:46:50.557Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:51:50.557Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:51:50.557Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T19:56:50.558Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T19:56:50.558Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:01:50.558Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:01:50.558Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:06:50.559Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:06:50.559Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:11:50.559Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:11:50.560Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:16:50.560Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:16:50.560Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:21:50.560Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:21:50.561Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:26:50.561Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:26:50.561Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:31:50.561Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:31:50.562Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:36:50.562Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:36:50.562Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:41:50.564Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:41:50.564Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:46:50.565Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:46:50.565Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:51:50.565Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:51:50.566Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T20:56:50.566Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T20:56:50.566Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:01:50.566Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:01:50.566Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:06:50.567Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:06:50.567Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:11:50.567Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:11:50.567Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:16:50.568Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:16:50.568Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:21:50.568Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:21:50.568Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:26:50.569Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:26:50.569Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:31:50.569Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:31:50.570Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:36:50.570Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:36:50.570Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:41:50.571Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:41:50.571Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:46:50.571Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:46:50.571Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:51:50.572Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:51:50.572Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T21:56:50.572Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T21:56:50.572Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:01:50.573Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:01:50.573Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:06:50.573Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:06:50.574Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:11:50.574Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:11:50.574Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:16:50.575Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:16:50.575Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:21:50.575Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:21:50.575Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:26:50.576Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:26:50.576Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:31:50.576Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:31:50.576Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:36:50.577Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:36:50.577Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:41:50.577Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:41:50.577Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:46:50.578Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:46:50.578Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:51:50.578Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:51:50.578Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T22:56:50.579Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T22:56:50.580Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T23:01:50.580Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T23:01:50.580Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T23:06:50.581Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T23:06:50.581Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T23:13:35.346Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T23:13:35.346Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T23:18:35.346Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T23:18:35.346Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T23:25:35.348Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T23:25:35.349Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T23:30:35.349Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T23:30:35.349Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T23:35:35.349Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T23:35:35.349Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-19T23:40:35.350Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-19T23:40:35.350Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-20T01:32:50.346Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-20T01:32:50.346Z"}
+{"caller":"notify.go:367","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Error on notify","ts":"2020-08-20T02:08:35.349Z"}
+{"caller":"dispatch.go:264","component":"dispatcher","err":"Post http://localhost:8060/dingtalk/ops_dingding/send: dial tcp [::1]:8060: connect: connection refused","level":"error","msg":"Notify for alerts failed","num_alerts":1,"ts":"2020-08-20T02:08:35.350Z"}
+{"caller":"main.go:197","level":"info","msg":"Starting Alertmanager","ts":"2020-08-21T02:01:34.083Z","version":"(version=0.18.0, branch=HEAD, revision=1ace0f76b7101cccc149d7298022df36039858ca)"}
+{"build_context":"(go=go1.12.6, user=root@868685ed3ed0, date=20190708-14:31:49)","caller":"main.go:198","level":"info","ts":"2020-08-21T02:01:34.083Z"}
+{"addr":"172.16.189.51","caller":"cluster.go:161","component":"cluster","level":"info","msg":"setting advertise address explicitly","port":9094,"ts":"2020-08-21T02:01:34.145Z"}
+{"caller":"cluster.go:623","component":"cluster","interval":"2s","level":"info","msg":"Waiting for gossip to settle...","ts":"2020-08-21T02:01:34.147Z"}
+{"caller":"coordinator.go:119","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Loading configuration file","ts":"2020-08-21T02:01:34.200Z"}
+{"caller":"coordinator.go:131","component":"configuration","file":"alertmanager.yml","level":"info","msg":"Completed loading of configuration file","ts":"2020-08-21T02:01:34.200Z"}
+{"address":"0.0.0.0:9093","caller":"main.go:429","level":"info","msg":"Listening","ts":"2020-08-21T02:01:34.204Z"}
+{"before":0,"caller":"cluster.go:648","component":"cluster","elapsed":"2.000147194s","level":"info","msg":"gossip not settled","now":1,"polls":0,"ts":"2020-08-21T02:01:36.148Z"}
+{"caller":"cluster.go:640","component":"cluster","elapsed":"10.001041113s","level":"info","msg":"gossip settled; proceeding","ts":"2020-08-21T02:01:44.149Z"}

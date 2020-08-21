@@ -1,0 +1,68 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - 172.16.189.51:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - "/usr/local/prometheus/rule/kafka.yml"
+  - "/usr/local/prometheus/rule/host.yml"
+  - "/usr/local/prometheus/rule/es.yml"
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['172.16.189.51:9090']
+      labels:
+        server: local
+  - job_name: "prometheus1"
+    file_sd_configs:
+      - files: ['/usr/local/prometheus/files_sd_configs/*.yaml']
+        refresh_interval: 5s
+ # - job_name: 'node'
+ #   static_configs:
+#    - targets: ['172.16.188.94:9100','172.16.188.95:9100',"172.16.188.96:9100"]
+  - job_name: 'ELK-MST'
+    scrape_interval: 30s
+    metrics_path: "/_prometheus/metrics"
+    basic_auth:
+      username: ligang 
+      password: ewt360.com
+    static_configs:
+    - targets:
+      - 172.16.188.136:9200
+      - 172.16.189.139:9200
+      - 172.16.188.72:9200
+      - 172.16.188.109:9200
+      - 172.16.189.164:9200
+      - 172.16.189.200:9200
+      - 172.16.189.214:9200
+      labels:
+        server: es
+    relabel_configs:
+    - action: replace 
+      source_labels: ['job']
+      regex: (.*) 
+      replacement: $1
+      target_label: ttt  
+    - action: labeldrop 
+      regex: job
+  
+  - job_name: 'node'
+    static_configs:
+    - targets: ['172.16.188.94:9100','172.16.188.95:9100','172.16.188.96:9100','172.16.188.218:9100','172.16.188.137:9100','172.16.188.109:9100','172.16.188.239:9100']
+ 
+

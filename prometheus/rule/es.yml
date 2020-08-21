@@ -1,0 +1,51 @@
+groups:
+- name: es.rules
+  rules:
+  - alert: esclusterwrong
+    expr: es_cluster_status  != 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      description:  "elasticsearch cluster {{$labels.server}} had primary shared not normal runningworking"
+
+  
+  - alert: esDown
+    expr: sum(up{job="ELK-MST"})  < 3
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      description:  "elasticsearch service {{$labels.instance}} down"
+
+  - alert: EsUnassignedTotal
+    expr: es_cluster_shards_number{type="unassigned"}  > 0
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      description:  "elasticsearch cluster {{$labels.server}} had shares lost"
+  
+  - alert: EsCpuUsed
+    expr: es_os_cpu_percent > 80
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      description:  "elasticsearch in {{$labels.server}}-{{$labels.node}} cpu used is above 80% current {{$value}}%"
+
+  - alert: EsJvmHeapMemUsed
+    expr: es_jvm_mem_heap_used_percent  > 75
+    for: 10m
+    labels:
+      severity: warnning
+    annotations:
+      description:  "elasticsearch node {{$labels.node}} Jvm Heap mem used is above 75% current {{$value}}%"
+
+  - alert: EsDiskUsed
+    expr: ceil((1 - es_fs_path_available_bytes / es_fs_path_total_bytes) * 100 ) > 90
+    for: 5m
+    labels:
+      severity: warnning
+    annotations:
+      description:  "{{$labels.node}} elasticsearch DiskUsage Used is above 90% current {{$value}}%"

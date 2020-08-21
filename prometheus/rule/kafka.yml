@@ -1,0 +1,11 @@
+groups:
+- name: kafka.rules
+  rules:
+  - alert: kafkabroker
+    expr: sum(up{job="kafka"}) < 3
+    for: 5m
+    labels:
+      severity: critical
+    annotations:
+      description:  "kafka cluster {{$labels.instance}} hava broker not normal runningworking"
+  

@@ -1,0 +1,51 @@
+groups:
+- name: zookeeperStatsAlert 
+  rules:
+  - alert: 堆积请求数过大
+    expr: avg(zk_outstanding_requests) by (instance) > 10 
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} "
+      description: "积请求数过大"
+  - alert: 阻塞中的 sync 过多
+    expr: avg(zk_pending_syncs) by (instance) > 10 
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} " 
+      description: "塞中的 sync 过多"
+  - alert: 平均响应延迟过高
+    expr: avg(zk_avg_latency) by (instance) > 10
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} "
+      description: '平均响应延迟过高'
+  - alert: 打开文件描述符数大于系统设定的大小
+    expr: zk_open_file_descriptor_count > zk_max_file_descriptor_count * 0.85
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} "
+      description: '打开文件描述符数大于系统设定的大小'
+  - alert: zookeeper服务器宕机
+    expr: zk_up == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} "
+      description: 'zookeeper服务器宕机'
+  - alert: zk主节点丢失
+    expr: absent(zk_server_state{state="leader"})  != 1 
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance {{ $labels.instance }} "
+      description: 'zk主节点丢失'
