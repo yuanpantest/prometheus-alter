@@ -1,9 +1,9 @@
 global:
   resolve_timeout: 5m
   smtp_smarthost: 'smtp.exmail.qq.com:587'
-  smtp_from: 'ewtnotice@mistong.com'
-  smtp_auth_username: 'ewtnotice@mistong.com'
-  smtp_auth_password: 'Ewt360.com'
+  smtp_from: ''
+  smtp_auth_username: ''
+  smtp_auth_password: ''
   smtp_require_tls: true
 templates:
   - '/usr/local/alertmanager/template/*.tmpl'
